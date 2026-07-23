@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-void text-ink font-body;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background-color: #e4283a;
+    color: #050506;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050506;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #232326;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #7a0f1d;
+  }
+
+  /* Activated by CustomCursor.tsx only on fine-pointer (desktop) devices.
+     Form fields are excluded so typing still shows a normal text caret. */
+  html.cursor-none *:not(input):not(textarea):not(select) {
+    cursor: none !important;
+  }
+}
+
+@layer components {
+  /* Core glassmorphism panel used across cards, nav, modals */
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.08];
+  }
+
+  .glass-strong {
+    @apply bg-obsidian/70 backdrop-blur-2xl border border-white/10;
+  }
+
+  /* Signature faceted corner motif — echoes the low-poly hero geometry
+     across flat UI (cards, panels) instead of generic rounded corners. */
+  .facet {
+    clip-path: polygon(
+      0 12px,
+      12px 0,
+      100% 0,
+      100% calc(100% - 12px),
+      calc(100% - 12px) 100%,
+      0 100%
+    );
+  }
+  .facet-lg {
+    clip-path: polygon(
+      0 28px,
+      28px 0,
+      100% 0,
+      100% calc(100% - 28px),
+      calc(100% - 28px) 100%,
+      0 100%
+    );
+  }
+
+  .text-gradient-crimson {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-crimson-glow via-crimson to-crimson-deep;
+  }
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-gold-soft via-gold to-gold-soft;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[11px] tracking-[0.28em] uppercase text-gold/80;
+  }
+
+  /* Contact form fields */
+  .input {
+    @apply w-full rounded-lg border border-white/10 bg-white/[0.03] px-3.5 py-3 text-[15px] text-ink;
+  }
+  .input:focus {
+    @apply outline-none border-crimson;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
