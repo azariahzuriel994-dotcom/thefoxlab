@@ -5,7 +5,7 @@ import { PROJECTS } from "@/lib/data";
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="relative py-28 lg:py-36">
+    <section id="portfolio" className="relative scroll-mt-24 py-28 lg:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <SectionHeading
           eyebrow="Selected Work"

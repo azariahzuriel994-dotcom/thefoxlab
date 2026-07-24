@@ -5,7 +5,7 @@ import { SERVICES } from "@/lib/data";
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-28 lg:py-36">
+    <section id="services" className="relative scroll-mt-24 py-28 lg:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <SectionHeading
           eyebrow="What We Do"

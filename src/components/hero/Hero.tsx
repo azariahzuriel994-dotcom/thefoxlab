@@ -56,7 +56,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="top" className="relative flex min-h-screen items-center overflow-hidden pt-24">
+    <section id="top" className="relative flex min-h-screen items-center overflow-hidden pt-24 sm:pt-28">
       {/* Ambient glow field behind everything — drifts gently with the cursor */}
       <div className="pointer-events-none absolute inset-0 bg-radial-fade" />
       <div
@@ -94,11 +94,11 @@ export default function Hero() {
             modern businesses — from AI automation to full-stack SaaS.
           </p>
 
-          <div ref={ctaRef} className="mt-10 flex flex-wrap items-center gap-4 opacity-0">
+          <div ref={ctaRef} className="mt-10 flex flex-col gap-3 opacity-0 sm:flex-row sm:flex-wrap sm:items-center">
             <a
               href="#contact"
               data-cursor-hover
-              className="group inline-flex items-center gap-2 rounded-full bg-crimson px-7 py-3.5 font-mono text-sm font-medium text-ink transition-transform hover:scale-105"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-crimson px-7 py-3.5 font-mono text-sm font-medium text-ink transition-transform hover:scale-105"
             >
               Start a Project
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -108,14 +108,14 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               data-cursor-hover
-              className="glass inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-mono text-sm font-medium text-ink transition-colors hover:border-gold/40"
+              className="glass inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-mono text-sm font-medium text-ink transition-colors hover:border-gold/40"
             >
               <MessageCircle size={16} />
               WhatsApp Us
             </a>
           </div>
 
-          <div className="mt-14 flex items-center gap-8 border-t border-white/10 pt-7">
+          <div className="mt-14 grid grid-cols-3 gap-3 border-t border-white/10 pt-7 sm:gap-8">
             <div>
               <div className="font-display text-2xl font-semibold text-gold">9+</div>
               <div className="font-mono text-[11px] tracking-wide text-muted">Service Lines</div>
@@ -131,7 +131,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative order-1 h-[380px] sm:h-[460px] lg:order-2 lg:h-[620px]">
+        <div className="relative order-1 h-[320px] sm:h-[460px] lg:order-2 lg:h-[620px]">
           <HeroScene />
         </div>
       </div>

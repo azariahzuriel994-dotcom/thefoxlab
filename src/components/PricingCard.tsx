@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 
@@ -19,7 +22,9 @@ export default function PricingCard({
   highlighted,
 }: PricingCardProps) {
   return (
-    <div
+    <motion.div
+      whileHover={{ y: -10, scale: 1.01 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
       className={`facet relative flex h-full flex-col p-8 ${
         highlighted
           ? "glass-strong border border-crimson/40 shadow-[0_0_60px_-15px_rgba(228,40,58,0.35)]"
@@ -59,6 +64,6 @@ export default function PricingCard({
       >
         Get Started
       </MagneticButton>
-    </div>
+    </motion.div>
   );
 }

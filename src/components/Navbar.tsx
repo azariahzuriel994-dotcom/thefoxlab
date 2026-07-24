@@ -14,8 +14,27 @@ export default function Navbar() {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, []);
+
+  useEffect(() => {
+    const body = document.body;
+    body.style.overflow = open ? "hidden" : "";
+
+    return () => {
+      body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <>
