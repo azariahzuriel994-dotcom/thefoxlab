@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { gsap } from "@/lib/gsap";
@@ -14,10 +15,15 @@ export default function Hero() {
   const eyebrowRef = useRef<HTMLSpanElement>(null);
   const line1Ref = useRef<HTMLSpanElement>(null);
   const line2Ref = useRef<HTMLSpanElement>(null);
+  const dividerRef = useRef<HTMLDivElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const ctaLinks = ctaRef.current?.querySelectorAll("a");
+    const statItems = statsRef.current?.querySelectorAll("div > div");
+
     // Delay tuned to pick up right as the loading screen finishes its exit.
     const tl = gsap.timeline({ delay: 2.9 });
     tl.fromTo(
@@ -38,6 +44,12 @@ export default function Hero() {
         "-=0.5"
       )
       .fromTo(
+        dividerRef.current,
+        { opacity: 0, width: 0, x: -8 },
+        { opacity: 1, width: 96, x: 0, duration: 0.55, ease: "power3.out" },
+        "-=0.25"
+      )
+      .fromTo(
         subRef.current,
         { opacity: 0, y: 16 },
         { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
@@ -48,13 +60,25 @@ export default function Hero() {
         { opacity: 0, y: 16 },
         { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
         "-=0.35"
-      )
-      .fromTo(
-        ctaRef.current?.querySelector("a"),
+      );
+
+    if (ctaLinks) {
+      tl.fromTo(
+        ctaLinks,
         { opacity: 0, y: 8 },
         { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: "power3.out" },
         "-=0.18"
       );
+    }
+
+    if (statItems) {
+      tl.fromTo(
+        statItems,
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: "power3.out" },
+        "-=0.2"
+      );
+    }
 
     return () => {
       tl.kill();
@@ -83,7 +107,7 @@ export default function Hero() {
             AI · WEB · SOFTWARE STUDIO
           </span>
 
-          <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="hero-title font-display text-[clamp(3rem,8vw,5.8rem)] font-semibold leading-[0.95] tracking-[-0.04em]">
             <span ref={line1Ref} className="block opacity-0">
               Building AI, Web
             </span>
@@ -92,47 +116,56 @@ export default function Hero() {
             </span>
           </h1>
 
-          <div className="mt-4 h-[2px] w-24 overflow-hidden rounded-full bg-gradient-to-r from-crimson via-gold to-transparent opacity-0" />
+          <div
+            ref={dividerRef}
+            className="mt-4 h-[2px] w-24 overflow-hidden rounded-full bg-gradient-to-r from-crimson via-gold to-transparent opacity-0"
+          />
 
           <p
             ref={subRef}
-            className="mt-7 max-w-md text-lg leading-relaxed text-muted opacity-0"
+            className="mt-7 max-w-xl text-base leading-relaxed text-muted opacity-0 sm:text-lg"
           >
             TheFoxLabs designs and engineers premium digital products for
             modern businesses — from AI automation to full-stack SaaS.
           </p>
 
           <div ref={ctaRef} className="mt-10 flex flex-col gap-3 opacity-0 sm:flex-row sm:flex-wrap sm:items-center">
-            <a
+            <motion.a
               href="#contact"
               data-cursor-hover
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-crimson px-7 py-3.5 font-mono text-sm font-medium text-ink transition-transform hover:scale-105"
+              whileHover={{ y: -2, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 280, damping: 20 }}
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-crimson px-7 py-3.5 font-mono text-sm font-medium text-ink shadow-[0_10px_30px_-12px_rgba(228,40,58,0.9)]"
             >
               Start a Project
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href={CONTACT.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
               data-cursor-hover
+              whileHover={{ y: -2, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 280, damping: 20 }}
               className="glass inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-mono text-sm font-medium text-ink transition-colors hover:border-gold/40"
             >
               <MessageCircle size={16} />
               WhatsApp Us
-            </a>
+            </motion.a>
           </div>
 
-          <div className="mt-14 grid grid-cols-3 gap-3 border-t border-white/10 pt-7 sm:gap-8">
-            <div>
+          <div ref={statsRef} className="mt-14 grid grid-cols-3 gap-3 border-t border-white/10 pt-7 sm:gap-8">
+            <div className="rounded-2xl border border-white/5 bg-white/[0.02] px-3 py-4">
               <div className="font-display text-2xl font-semibold text-gold">9+</div>
               <div className="font-mono text-[11px] tracking-wide text-muted">Service Lines</div>
             </div>
-            <div>
+            <div className="rounded-2xl border border-white/5 bg-white/[0.02] px-3 py-4">
               <div className="font-display text-2xl font-semibold text-gold">24–72h</div>
               <div className="font-mono text-[11px] tracking-wide text-muted">First Response</div>
             </div>
-            <div>
+            <div className="rounded-2xl border border-white/5 bg-white/[0.02] px-3 py-4">
               <div className="font-display text-2xl font-semibold text-gold">Global</div>
               <div className="font-mono text-[11px] tracking-wide text-muted">Remote Delivery</div>
             </div>

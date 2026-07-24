@@ -84,6 +84,10 @@
     @apply font-mono text-[11px] tracking-[0.28em] uppercase text-gold/80;
   }
 
+  .hero-title {
+    text-shadow: 0 0 24px rgba(228, 40, 58, 0.12);
+  }
+
   /* Contact form fields */
   .input {
     @apply w-full rounded-lg border border-white/10 bg-white/[0.03] px-3.5 py-3 text-[15px] text-ink;

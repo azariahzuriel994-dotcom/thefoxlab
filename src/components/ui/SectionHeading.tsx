@@ -35,7 +35,7 @@ export default function SectionHeading({
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.72, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-        className="font-display text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl"
+        className="font-display text-3xl font-semibold tracking-[-0.03em] sm:text-4xl lg:text-5xl"
       >
         {title}
       </motion.h2>
@@ -46,7 +46,7 @@ export default function SectionHeading({
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-5 text-base leading-relaxed text-muted"
+          className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg"
         >
           {description}
         </motion.p>
