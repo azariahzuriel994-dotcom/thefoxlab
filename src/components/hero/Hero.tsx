@@ -48,6 +48,12 @@ export default function Hero() {
         { opacity: 0, y: 16 },
         { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
         "-=0.35"
+      )
+      .fromTo(
+        ctaRef.current?.querySelector("a"),
+        { opacity: 0, y: 8 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: "power3.out" },
+        "-=0.18"
       );
 
     return () => {
@@ -85,6 +91,8 @@ export default function Hero() {
               & Software Solutions
             </span>
           </h1>
+
+          <div className="mt-4 h-[2px] w-24 overflow-hidden rounded-full bg-gradient-to-r from-crimson via-gold to-transparent opacity-0" />
 
           <p
             ref={subRef}

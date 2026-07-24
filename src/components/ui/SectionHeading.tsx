@@ -21,8 +21,8 @@ export default function SectionHeading({
   return (
     <div className={`mb-14 max-w-2xl ${isCenter ? "mx-auto text-center" : ""}`}>
       <motion.span
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 12, scale: 0.98 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className="eyebrow mb-4 block"
@@ -31,10 +31,10 @@ export default function SectionHeading({
       </motion.span>
 
       <motion.h2
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.7, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.72, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
         className="font-display text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl"
       >
         {title}
@@ -42,8 +42,8 @@ export default function SectionHeading({
 
       {description && (
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="mt-5 text-base leading-relaxed text-muted"

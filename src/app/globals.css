@@ -12,6 +12,8 @@
   body {
     @apply bg-void text-ink font-body;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
   ::selection {
     background-color: #e4283a;
@@ -88,6 +90,16 @@
   }
   .input:focus {
     @apply outline-none border-crimson;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    overscroll-behavior-y: none;
   }
 }
 
